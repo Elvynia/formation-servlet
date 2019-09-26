@@ -1,7 +1,6 @@
 package fr.wcs.servlet;
 
 import java.io.IOException;
-import java.io.Writer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/")
-public class IndexServlet extends HttpServlet {
+@WebServlet("/test")
+public class TestServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Writer w = resp.getWriter();
-		w.append("<html>");
-		w.append("<body>");
-		w.append("<h1>Ma super servlet !</h1>");
-		w.append("<a href=\"test\">Aller vers la page test</a>");
-		w.append("</body>");
-		w.append("</html>");
-		w.flush();
+		this.getServletContext().getRequestDispatcher("/WEB-INF/views/test.jsp")
+			.forward(req, resp);
 	}
+	
 }
